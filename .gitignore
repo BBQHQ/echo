@@ -1,0 +1,41 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+.venv/
+venv/
+env/
+*.egg-info/
+dist/
+build/
+.pytest_cache/
+.ruff_cache/
+
+# Echo runtime state
+data/*.db
+data/*.db-journal
+data/*.db-wal
+data/*.db-shm
+
+# SSL certs (auto-generated on first boot)
+certs/
+
+# Whisper binaries + models (built by scripts/install_whisper, or unzipped from a release)
+whisper/src/
+whisper/Release/
+whisper/build/
+whisper/*.exe
+whisper/*.dll
+whisper/whisper-server
+whisper/models/*.bin
+
+# Env
+.env
+
+# IDE
+.vscode/
+.idea/
+*.swp
+.DS_Store
