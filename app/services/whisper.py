@@ -7,6 +7,7 @@ restarting Echo.
 """
 
 import asyncio
+import shutil
 import subprocess
 import sys
 import tempfile
@@ -162,6 +163,26 @@ def start_ttl_watcher():
         _ttl_task = asyncio.create_task(_ttl_watcher())
 
 
+_ffmpeg_exe: str | None = None
+
+
+def _get_ffmpeg() -> str:
+    """Resolve an ffmpeg binary: a system one on PATH if present, otherwise the
+    static binary bundled via the imageio-ffmpeg wheel (so Echo is self-contained
+    and needs no separate ffmpeg install). Result is cached."""
+    global _ffmpeg_exe
+    if _ffmpeg_exe:
+        return _ffmpeg_exe
+    _ffmpeg_exe = shutil.which("ffmpeg")
+    if not _ffmpeg_exe:
+        try:
+            import imageio_ffmpeg
+            _ffmpeg_exe = imageio_ffmpeg.get_ffmpeg_exe()
+        except Exception:
+            _ffmpeg_exe = "ffmpeg"  # last resort; surfaces a clear error if absent
+    return _ffmpeg_exe
+
+
 def _convert_to_wav(audio_bytes: bytes, filename: str) -> bytes:
     """Convert any audio format to 16kHz mono WAV using ffmpeg."""
     suffix = Path(filename).suffix or ".webm"
@@ -172,7 +193,7 @@ def _convert_to_wav(audio_bytes: bytes, filename: str) -> bytes:
     try:
         subprocess.run(
             [
-                "ffmpeg", "-y",
+                _get_ffmpeg(), "-y",
                 "-i", src_path,
                 "-ar", "16000",
                 "-ac", "1",
