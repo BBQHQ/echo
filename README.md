@@ -6,6 +6,8 @@
 </p>
 
 <p align="center">
+  <a href="https://github.com/BBQHQ/echo/releases/latest"><img alt="Latest release" src="https://img.shields.io/github/v/release/BBQHQ/echo?label=download&color=brightgreen&logo=github"></a>
+  <a href="https://github.com/BBQHQ/echo/releases"><img alt="Release date" src="https://img.shields.io/github/release-date/BBQHQ/echo?color=blue"></a>
   <img alt="License: MIT" src="https://img.shields.io/badge/license-MIT-blue.svg">
   <img alt="Python 3.11+" src="https://img.shields.io/badge/python-3.11%2B-blue.svg">
   <img alt="Local-first" src="https://img.shields.io/badge/local--first-100%25-brightgreen.svg">
