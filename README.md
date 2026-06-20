@@ -67,8 +67,9 @@ The database is git-ignored, so it's never committed. Back it up (or move it bet
 ## Requirements
 
 - **Python 3.11+**
-- **ffmpeg** (with `ffprobe`) on your `PATH` — normalizes audio before transcription. [Download](https://ffmpeg.org/download.html)
 - **The whisper.cpp engine** — installed once (see [below](#installing-the-engine)).
+
+That's it. **ffmpeg is bundled** (via the `imageio-ffmpeg` wheel in `requirements.txt`), so there's nothing else to install — `pip install` brings it along. If you already have a system `ffmpeg` on your `PATH`, Echo will use that instead.
 
 ## Quick start
 

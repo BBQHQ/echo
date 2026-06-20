@@ -5,3 +5,4 @@ httpx
 aiosqlite
 pydantic-settings
 cryptography
+imageio-ffmpeg  # bundles a static ffmpeg binary so no separate install is needed
